@@ -1,20 +1,18 @@
 import {
   Box,
   Flex,
+  Heading,
   Input,
   InputGroup,
   InputLeftElement,
-  Text,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
-import { useQuery } from 'react-query';
+import React, { ChangeEventHandler } from 'react';
 
-interface SearchProps {}
+interface SearchProps {
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+}
 
-export const Search: React.FC<SearchProps> = () => {
-  const [value, setValue] = useState('');
-  const handleChange = (e: any) => setValue(e.target.value);
-
+export const Search: React.FC<SearchProps> = ({ onChange }) => {
   return (
     <Box
       p='8'
@@ -24,15 +22,14 @@ export const Search: React.FC<SearchProps> = () => {
       w='100%'>
       <InputGroup>
         <Flex direction='column' align='flex-start' w='100%'>
-          <Text pb='4' color='ink.base'>
+          <Heading size='l' pb='4' color='ink.base'>
             Movie Title
-          </Text>
+          </Heading>
           <InputLeftElement pointerEvents='none' />
           <Input
+            onChange={onChange}
             borderColor='indigo.base'
-            value={value}
-            onChange={handleChange}
-            placeholder='Type Movie Name Here'
+            placeholder='Search for a movie! For example: "The Flintstones in Viva Rock Vegas"'
           />
         </Flex>
       </InputGroup>
