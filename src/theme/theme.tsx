@@ -1,6 +1,13 @@
 import { extendTheme } from '@chakra-ui/react';
 
 export const theme = extendTheme({
+  styles: {
+    global: {
+      'html, body': {
+        color: 'ink.base',
+      },
+    },
+  },
   colors: {
     sky: {
       lighter: '#f9fafb',
@@ -12,7 +19,7 @@ export const theme = extendTheme({
       lightest: '#919eab',
       lighter: '#637381',
       light: '#454f5b',
-      base: '@212b36',
+      base: '#212b36',
     },
     titleBar: {
       light: '#b3b5cb',
