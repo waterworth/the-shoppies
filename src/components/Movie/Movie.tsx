@@ -10,7 +10,7 @@ interface MovieProps {
 }
 
 export const Movie: React.FC<MovieProps> = ({ movie, variant }) => {
-  const [movieData, setMovieData] = useState(movie);
+  const [movieData] = useState(movie);
 
   const { handleNominate, handleRemoveNomination } = useNominations();
 

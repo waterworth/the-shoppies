@@ -1,5 +1,5 @@
 import { Box, Heading } from '@chakra-ui/react';
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import { MovieDetails } from '../../App';
 import { Movie } from '../Movie/Movie';
 import { v4 as uuid } from 'uuid';
