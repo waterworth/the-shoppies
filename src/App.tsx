@@ -1,15 +1,22 @@
-import { Box, ChakraProvider, Flex, Heading, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  ChakraProvider,
+  Flex,
+  Heading,
+  Image,
+  VStack,
+} from '@chakra-ui/react';
 import axios from 'axios';
 import React, { ChangeEvent, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { MovieQueryFn } from './api/fetchMovie.js';
+import logo from './assets/shopify-logo.png';
 import { ColorModeSwitcher } from './components/ColorModeSwitcher/ColorModeSwitcher';
 import { Nominations } from './components/Nominations/Nominations';
 import { Results } from './components/Results/Results';
 import { Search } from './components/Search/Search';
-import { theme } from './theme/theme';
 import ContextProvider from './ctx';
+import { theme } from './theme/theme';
 
 interface AppProps {}
 
@@ -19,13 +26,7 @@ export interface MovieDetails {
   imdbID: string;
 }
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      queryFn: MovieQueryFn,
-    },
-  },
-});
+const queryClient = new QueryClient();
 
 export const App: React.FC<AppProps> = () => {
   const [input, setInput] = useState('');
@@ -41,16 +42,6 @@ export const App: React.FC<AppProps> = () => {
     fetchMovies();
   };
 
-  // const handleNominate = (movie: MovieDetails) => {
-  //   if (nominations.length < 5) {
-  //     console.log('Movie can be added to nominations');
-  //     setNominations([...nominations, movie]);
-  //     console.log(nominations);
-  //   } else {
-  //     return;
-  //   }
-  // };
-
   return (
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>
@@ -58,9 +49,12 @@ export const App: React.FC<AppProps> = () => {
           <Flex direction='column' minH='100vh' p={3}>
             <ColorModeSwitcher w='2rem' justifySelf='flex-end' />
             <VStack spacing={8} w='75%' mx='auto'>
-              <Heading as='h1' size='2xl'>
-                The Shoppies
-              </Heading>
+              <Flex alignItems='center'>
+                <Image boxSize='75px' src={logo} mr='4' />
+                <Heading as='h1' size='2xl'>
+                  The Shoppies
+                </Heading>
+              </Flex>
               <ContextProvider>
                 <Search onChange={handleChange} />
                 <Flex w='100%' justify='space-between'>
@@ -72,7 +66,6 @@ export const App: React.FC<AppProps> = () => {
           </Flex>
         </Box>
       </ChakraProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };
