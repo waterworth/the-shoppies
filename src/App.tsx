@@ -8,8 +8,8 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { ChangeEvent, useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import logo from './assets/shopify-logo.png';
 import { ColorModeSwitcher } from './components/ColorModeSwitcher/ColorModeSwitcher';
 import { Nominations } from './components/Nominations/Nominations';
@@ -65,6 +65,25 @@ export const App: React.FC<AppProps> = () => {
             </VStack>
           </Flex>
         </Box>
+        <Toaster
+          position='top-right'
+          toastOptions={{
+            duration: 5000,
+            success: {
+              duration: 3000,
+              style: {
+                background: '#e3f1df',
+                color: '#414f3e',
+              },
+            },
+            error: {
+              style: {
+                background: '#feaad9a',
+                color: '#583c35',
+              },
+            },
+          }}
+        />
       </ChakraProvider>
     </QueryClientProvider>
   );
