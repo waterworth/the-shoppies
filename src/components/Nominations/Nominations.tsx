@@ -1,9 +1,14 @@
 import React from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, Heading } from '@chakra-ui/react';
+import { v4 as uuid } from 'uuid';
+import { useNominations } from '../../ctx';
+import { MovieDetails } from '../../App';
+import { Movie } from '../Movie/Movie';
 
 interface NominationsProps {}
 
 export const Nominations: React.FC<NominationsProps> = () => {
+  const { nominations, handleDeleteNomination } = useNominations();
   return (
     <Box
       p='8'
@@ -11,7 +16,11 @@ export const Nominations: React.FC<NominationsProps> = () => {
       border='1px'
       borderRadius='xl'
       borderColor='ink.lightest'>
-      <h2>Nominations</h2>
+      <Heading size='s'>Nominations</Heading>
+
+      {nominations?.map((movie: any) => (
+        <Movie key={uuid()} movie={movie} variant='nomination' />
+      ))}
     </Box>
   );
 };
