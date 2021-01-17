@@ -1,14 +1,15 @@
 import { Box, ChakraProvider, Flex, Heading, VStack } from '@chakra-ui/react';
+import axios from 'axios';
 import React, { ChangeEvent, useState } from 'react';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { MovieQueryFn } from './api/fetchMovie.js';
 import { ColorModeSwitcher } from './components/ColorModeSwitcher/ColorModeSwitcher';
 import { Nominations } from './components/Nominations/Nominations';
 import { Results } from './components/Results/Results';
 import { Search } from './components/Search/Search';
 import { theme } from './theme/theme';
-import { MovieQueryFn } from './api/fetchMovie.js';
-import axios from 'axios';
+import ContextProvider from './ctx';
 
 interface AppProps {}
 
@@ -40,6 +41,16 @@ export const App: React.FC<AppProps> = () => {
     fetchMovies();
   };
 
+  // const handleNominate = (movie: MovieDetails) => {
+  //   if (nominations.length < 5) {
+  //     console.log('Movie can be added to nominations');
+  //     setNominations([...nominations, movie]);
+  //     console.log(nominations);
+  //   } else {
+  //     return;
+  //   }
+  // };
+
   return (
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>
@@ -50,11 +61,13 @@ export const App: React.FC<AppProps> = () => {
               <Heading as='h1' size='2xl'>
                 The Shoppies
               </Heading>
-              <Search onChange={handleChange} />
-              <Flex w='100%' justify='space-between'>
-                <Results movieList={movieList} />
-                <Nominations />
-              </Flex>
+              <ContextProvider>
+                <Search onChange={handleChange} />
+                <Flex w='100%' justify='space-between'>
+                  <Results movieList={movieList} />
+                  <Nominations />
+                </Flex>
+              </ContextProvider>
             </VStack>
           </Flex>
         </Box>

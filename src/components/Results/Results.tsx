@@ -1,19 +1,19 @@
-import React from 'react';
-import { Box, Heading, Text } from '@chakra-ui/react';
-import { useQuery, useQueryClient } from 'react-query';
-import axios from 'axios';
-import { v4 as uuid } from 'uuid';
+import { Box, Heading } from '@chakra-ui/react';
+import React, { MouseEventHandler } from 'react';
 import { MovieDetails } from '../../App';
 import { Movie } from '../Movie/Movie';
+import { v4 as uuid } from 'uuid';
 
 interface ResultsProps {
   input?: string;
   movieList?: MovieDetails[];
+  handleNominate?: MovieDetails;
 }
 
-export const Results: React.FC<ResultsProps> = ({ movieList }) => {
-  const queryClient = useQueryClient();
-  console.log(movieList);
+export const Results: React.FC<ResultsProps> = ({
+  movieList,
+  handleNominate,
+}) => {
   return (
     <Box
       overflow='scroll'
@@ -24,7 +24,12 @@ export const Results: React.FC<ResultsProps> = ({ movieList }) => {
       borderColor='ink.lightest'>
       <Heading size='l'>Movies</Heading>
       {movieList?.map((movie) => (
-        <Movie movie={movie} />
+        <Movie
+          key={uuid()}
+          movie={movie}
+          handleNominate={handleNominate}
+          variant='result'
+        />
       ))}
     </Box>
   );
