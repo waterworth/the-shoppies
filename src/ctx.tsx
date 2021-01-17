@@ -11,8 +11,12 @@ const ContextProvider: React.FC<CtxProps> = ({ children }) => {
   const [nominations, setNominations] = useState([] as any);
   const handleNominate = (movie: MovieDetails) => {
     if (nominations.length < 5) {
-      setNominations([...nominations, movie]);
-      toast.success(`${movie.Title} added to nominations`);
+      if (nominations.includes(movie)) {
+        toast.error("You've already added that movie!");
+      } else {
+        setNominations([...nominations, movie]);
+        toast.success(`${movie.Title} added to nominations`);
+      }
     } else {
       toast.error('Nominations are full!');
     }

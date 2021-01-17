@@ -23,6 +23,7 @@ export const Nominations: React.FC<NominationsProps> = () => {
           fontWeight='600'
           my='4'
           p='4'
+          textAlign='center'
           bg='green.lighter'
           color='green.text'
           borderTop='4px'
