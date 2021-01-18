@@ -80,8 +80,8 @@ export const App: React.FC<AppProps> = () => {
             },
             error: {
               style: {
-                background: '#feaad9a',
-                color: '#583c35',
+                background: '#bf0711',
+                color: 'white',
               },
             },
           }}
