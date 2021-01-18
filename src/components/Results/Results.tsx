@@ -1,8 +1,8 @@
 import { Box, Heading } from '@chakra-ui/react';
 import React from 'react';
-import { MovieDetails } from '../../App';
-import { Movie } from '../Movie/Movie';
 import { v4 as uuid } from 'uuid';
+import { MovieDetails } from '../../App';
+import Movie from '../Movie';
 
 interface ResultsProps {
   input?: string;
