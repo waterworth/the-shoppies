@@ -41,6 +41,7 @@ export const Movie: React.FC<MovieProps> = ({ movie, variant }) => {
 
   const handleOnClick = (e: MouseEvent<HTMLElement>) => {
     setMovieById({} as MovieByIdProps);
+    // Toggles modal open
     onOpen();
     const fetchMovieById = async (imdbID: string) => {
       await axios
@@ -48,7 +49,6 @@ export const Movie: React.FC<MovieProps> = ({ movie, variant }) => {
         .then((res) => setMovieById(res.data));
     };
     fetchMovieById(movie.imdbID);
-    console.log(movieById);
   };
 
   return (
@@ -67,6 +67,11 @@ export const Movie: React.FC<MovieProps> = ({ movie, variant }) => {
           mb='4'>
           Get More Details
         </Button>
+
+        {/* 
+        I understand that the modal can be it's own component, 
+        but in the interest of time, I decided to build it inline 
+        */}
 
         <Modal onClose={onClose} isOpen={isOpen} size='2xl' closeOnEsc={true}>
           <ModalOverlay opacity='20' />
