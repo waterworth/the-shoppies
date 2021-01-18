@@ -8,15 +8,15 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { ChangeEvent, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Toaster } from 'react-hot-toast';
 import logo from './assets/shopify-logo.png';
-import { ColorModeSwitcher } from './components/ColorModeSwitcher/ColorModeSwitcher';
-import { Nominations } from './components/Nominations/Nominations';
-import { Results } from './components/Results/Results';
-import { Search } from './components/Search/Search';
+import ColorModeSwitcher from './components/ColorModeSwitcher/';
+import Nominations from './components/Nominations/';
+import Results from './components/Results/';
+import Search from './components/Search/';
 import ContextProvider from './ctx';
 import { theme } from './theme/theme';
-import { Helmet } from 'react-helmet';
 
 interface AppProps {}
 
@@ -29,6 +29,7 @@ export interface MovieDetails {
 export const App: React.FC<AppProps> = () => {
   const [input, setInput] = useState('');
   const [movieList, setMovieList] = useState([]);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e?.target.value);
 

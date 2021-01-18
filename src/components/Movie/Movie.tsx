@@ -48,7 +48,6 @@ export const Movie: React.FC<MovieProps> = ({ movie, variant }) => {
         .then((res) => setMovieById(res.data));
     };
     fetchMovieById(movie.imdbID);
-    console.log(movieById);
   };
 
   return (
