@@ -9,7 +9,6 @@ import {
 import axios from 'axios';
 import React, { ChangeEvent, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import logo from './assets/shopify-logo.png';
 import { ColorModeSwitcher } from './components/ColorModeSwitcher/ColorModeSwitcher';
 import { Nominations } from './components/Nominations/Nominations';
@@ -27,8 +26,6 @@ export interface MovieDetails {
   imdbID: string;
 }
 
-const queryClient = new QueryClient();
-
 export const App: React.FC<AppProps> = () => {
   const [input, setInput] = useState('');
   const [movieList, setMovieList] = useState([]);
@@ -44,7 +41,7 @@ export const App: React.FC<AppProps> = () => {
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <Helmet>
         <link rel='icon' type='image/png' href={logo} />
         <title>The Shoppies</title>
@@ -90,6 +87,6 @@ export const App: React.FC<AppProps> = () => {
           }}
         />
       </ChakraProvider>
-    </QueryClientProvider>
+    </>
   );
 };
