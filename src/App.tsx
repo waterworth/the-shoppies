@@ -37,7 +37,7 @@ export const App: React.FC<AppProps> = () => {
 
     const fetchMovies = async () => {
       await axios
-        .get(`http://www.omdbapi.com/?apikey=509bc2e&s=${input}`)
+        .get(`https://www.omdbapi.com/?apikey=509bc2e&s=${input}`)
         .then((res) => setMovieList(res.data.Search));
     };
     fetchMovies();
