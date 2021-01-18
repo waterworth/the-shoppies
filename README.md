@@ -3,6 +3,8 @@
 ## ⚡ Live Link 💻
 https://masonwaterworth.com
 
+The site is **not** responsive. Desktop and landscape tablet views will display correctly. My apologies.
+
 This is a project built for the Shopify Front End Developper Internship Role for 2021.
 The site is built using:
 
