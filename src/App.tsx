@@ -17,6 +17,7 @@ import { Results } from './components/Results/Results';
 import { Search } from './components/Search/Search';
 import ContextProvider from './ctx';
 import { theme } from './theme/theme';
+import { Helmet } from 'react-helmet';
 
 interface AppProps {}
 
@@ -44,6 +45,10 @@ export const App: React.FC<AppProps> = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Helmet>
+        <link rel='icon' type='image/png' href={logo} />
+        <title>The Shoppies</title>
+      </Helmet>
       <ChakraProvider theme={theme}>
         <Box>
           <Flex direction='column' minH='100vh' p={3}>
